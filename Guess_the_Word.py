@@ -37,7 +37,7 @@ def validator(guess, answer):
             tile_pattern.append(tiles['incorrect'])
 
     # def return joined colored letter and tile pattern
-    return ''.join(guess), ''.join(tile_pattern)
+    return ''.join(guessed), ''.join(tile_pattern)
 
 
 tries = 6
@@ -66,6 +66,9 @@ elif language == 'ru':
 
     # select random word from list
     word = choice(words)
+else:
+    print('Choose from en or ru, please')
+    language = str(input('Choose language to play (en/ru): ').lower())
 
 
 def game(target_word):
