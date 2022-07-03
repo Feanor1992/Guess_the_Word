@@ -45,30 +45,39 @@ tries = 6
 # choosing language
 language = str(input('Choose language to play (en/ru): ').lower())
 
-if language == 'en':
-    english_words_df = pd.read_csv('english_words.csv')
-    # format df to list for quicker extraction word to random module
-    english_words_list = list(english_words_df.astype(str).word.values)
+# check the correctness of the language input
+lang = True
+while lang:
+    if language == 'en':
+        english_words_df = pd.read_csv('english_words.csv')
+        # format df to list for quicker extraction word to random module
+        english_words_list = list(english_words_df.astype(str).word.values)
 
-    # all words to uppercase like in wordle
-    words = [w.upper() for w in english_words_list]
+        # all words to uppercase like in wordle
+        words = [w.upper() for w in english_words_list]
 
-    # select random word from list
-    word = choice(words)
-elif language == 'ru':
-    russian_words_df = pd.read_csv('russian_words.txt')
+        # select random word from list
+        word = choice(words)
 
-    # format df to list for quicker extraction word to random module
-    russian_words_list = list(russian_words_df.astype(str).word.values)
+        # break the loop
+        lang = False
+    elif language == 'ru':
+        russian_words_df = pd.read_csv('russian_words.txt')
 
-    # all words to uppercase like in wordle
-    words = [wr.upper() for wr in russian_words_list]
+        # format df to list for quicker extraction word to random module
+        russian_words_list = list(russian_words_df.astype(str).word.values)
 
-    # select random word from list
-    word = choice(words)
-else:
-    print('Choose from en or ru, please')
-    language = str(input('Choose language to play (en/ru): ').lower())
+        # all words to uppercase like in wordle
+        words = [wr.upper() for wr in russian_words_list]
+
+        # select random word from list
+        word = choice(words)
+
+        # break the loop
+        lang = False
+    else:
+        print('Choose from en or ru, please')
+        language = str(input('Choose language to play (en/ru): ').lower())
 
 
 def game(target_word):
